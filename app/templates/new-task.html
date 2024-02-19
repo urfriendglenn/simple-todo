@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Simple ToDo</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+		<h1>Add New Task</h1>
+		<form>
+			<div class="form-group row">
+				<label for="task-name" class="col-sm-2 col-form-label">Task Name:</label>
+				<div class="col-sm-10">
+					<input type="text" id="task-name" name="task-name"></br>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="priority" class="col-sm-2 col-form-label">Priority:</label>
+				<div class="col-sm-10">
+					<select multiple class="form-control" id="priority" name="priority">
+						<option value="low">Low</option>
+						<option value="medium">Medium</option>
+						<option value="high">High</option>
+						<option value="urgent">Urgent</option>
+					</select></br>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="due_date" class="col-sm-2 col-form-label">Due Date:</label>
+				<div class="col-sm-10">
+					<input type="date" id="due_date" name="due_date" /></br>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+			<a class="btn btn-danger" href="/" role="button">Cancel</a>
+		</form>
+		</div>
+	</body>
+</html>
