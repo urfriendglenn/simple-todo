@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<title>Simple ToDo</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	</head>
-	<body>
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Simple ToDo{% endblock %}
+
+{% block content %}
 		<div class="jumbotron text-center">
 			<h1>Simple ToDo</h1>
 			<p>A simple ToDo Application</p>
@@ -25,5 +19,4 @@
 		</table>
 		<a class="btn btn-primary" href="/new-task" role="button">New Task</a>
 		</div>
-	</body>
-</html>
+{% endblock %}
