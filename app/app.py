@@ -26,15 +26,23 @@ class Tasks(db.Model):
       def __repr__(self):
             return f'<Task> {self.task_name}'
 
+
 class NewTask(FlaskForm):
       task_name = StringField('Task Name', validators=[DataRequired()])
       priority = SelectField('Priority', choices=[(1, 'Low'), (2, 'Medium'), (3, 'High'), (4, 'Urgent')], validators=[DataRequired()])
       due_date = DateField('Due Date', format='%Y-%m-%d', validators=[DataRequired()])
       submit = SubmitField('Submit')
 
+@app.before_request
+def init_db():
+    with app.app_context():
+        db.create_all()
+        db.session.commit()
+
 @app.route('/')
 def index():
-      return render_template('index.html')
+      tasks = Tasks.query.all()
+      return render_template('index.html', tasks=tasks)
 
 @app.route('/new-task', methods=['GET', 'POST'])
 def task():
