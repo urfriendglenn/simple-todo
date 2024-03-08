@@ -8,11 +8,24 @@
 			<p>A simple ToDo Application</p>
 		</div>
 		<div class="container">
-			{% for task in tasks %}
-				<li>{{ task.task_name }}</li>
-				<li>{{ task.priority }}</li>
-				<li>{{ task.due_date }}</li>
-			{% endfor %}
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Task</th>
+						<th>Priority</th>
+						<th>Due Date</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for task in tasks %}
+					<tr>
+						<td>{{ task.task_name }}</td>
+						<td>{{ task.priority }}</td>
+						<td>{{ task.due_date.strftime('%Y-%m-%d') }}</td>
+					</tr>
+					{% endfor %}
+			</tbody>
+		</table>
 		<a class="btn btn-primary" href="/new-task" role="button">New Task</a>
 		</div>
 {% endblock %}

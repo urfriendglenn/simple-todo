@@ -29,7 +29,7 @@ class Tasks(db.Model):
 
 class NewTask(FlaskForm):
       task_name = StringField('Task Name', validators=[DataRequired()])
-      priority = SelectField('Priority', choices=[(1, 'Low'), (2, 'Medium'), (3, 'High'), (4, 'Urgent')], validators=[DataRequired()])
+      priority = SelectField('Priority', choices=[('Low'), ('Medium'), ('High'), ('Urgent')], validators=[DataRequired()])
       due_date = DateField('Due Date', format='%Y-%m-%d', validators=[DataRequired()])
       submit = SubmitField('Submit')
 
