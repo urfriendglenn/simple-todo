@@ -22,6 +22,7 @@ class Tasks(db.Model):
       task_name = db.Column(db.String(100), nullable=False)
       priority = db.Column(db.String(100), nullable=False)
       due_date = db.Column(db.DateTime(timezone=True))
+      status = db.Column(db.String(100), nullable=False)
 
       def __repr__(self):
             return f'<Task> {self.task_name}'
@@ -31,7 +32,16 @@ class NewTask(FlaskForm):
       task_name = StringField('Task Name', validators=[DataRequired()])
       priority = SelectField('Priority', choices=[('Low'), ('Medium'), ('High'), ('Urgent')], validators=[DataRequired()])
       due_date = DateField('Due Date', format='%Y-%m-%d', validators=[DataRequired()])
+      status = SelectField('Status', choices=[('Pending'), ('In Progress'), ('Blocked'), ('Completed')], validators=[DataRequired()])
       submit = SubmitField('Submit')
+
+class EditTask(FlaskForm):
+      task_name = StringField('Task Name', validators=[DataRequired()])
+      priority = SelectField('Priority', choices=[('Low'), ('Medium'), ('High'), ('Urgent')], validators=[DataRequired()])
+      due_date = DateField('Due Date', format='%Y-%m-%d', validators=[DataRequired()])
+      status = SelectField('Status', choices=[('Pending'), ('In Progress'), ('Blocked'), ('Completed')], validators=[DataRequired()])
+      submit = SubmitField('Submit')
+
 
 @app.before_request
 def init_db():
@@ -50,11 +60,17 @@ def task():
       if form.validate_on_submit():
             task = Tasks(task_name=form.task_name.data,
                          priority=form.priority.data,
-                         due_date=form.due_date.data)
+                         due_date=form.due_date.data,
+                         status=form.status.data)
             db.session.add(task)
             db.session.commit()
             return redirect(url_for('.index'))
       return render_template('new-task.html', form=form)
+
+@app.route('/edit-task', methods=['GET', 'POST'])
+def edit_task():
+      form = EditTask()
+      return render_template('edit-task.html', form=form)
 
 @app.errorhandler(404)
 def page_not_found(e):

@@ -14,6 +14,7 @@
 						<th>Task</th>
 						<th>Priority</th>
 						<th>Due Date</th>
+						<th>Status</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -22,6 +23,8 @@
 						<td>{{ task.task_name }}</td>
 						<td>{{ task.priority }}</td>
 						<td>{{ task.due_date.strftime('%Y-%m-%d') }}</td>
+						<td>{{ task.status }}</td>
+						<td><a class="btn btn-primary" href="/edit-task" role="button">Edit</a>
 					</tr>
 					{% endfor %}
 			</tbody>
